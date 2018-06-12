@@ -1,0 +1,67 @@
+VERSION 5.0 C  This keyboard will work with Keyman 5.0
+NAME "KoyturaGunjalaLipi 1.002"
+BITMAP "kgl-pua.bmp"
+copyright "SIL International"
+c Created Jan 2015
+
+CAPS ALWAYS OFF
+
+begin UNICODE > use(main)
+group (main) using keys
+
+store (vowel)  'a' 'i' 'u' 'e'     'o'\
+               'A' 'I' 'U' 'E' 'Y' 'O' 'V'
+store (vowelU) U+11D60 U+11D62 U+11D64 U+11D66        U+11D69 \
+               U+11D61 U+11D63 U+11D65 U+11D67 U+11D68 U+11D6A U+11D6B
+
+store (consonant) 'k' 'g' 'W' 'c' 'r' 'j' 't' 'd' 'N' 'q' '[' 'n' 'p' 'b' 'm' 'y' 'l' 'v' 's' \
+                  'K' 'G'     'C'     'J' 'T' 'D'     'Q' '{'     'P' 'B'                 'h'
+store (consonantU) U+11D71 U+11D76 U+11D84 U+11D7B U+11D88 U+11D80 U+11D7D U+11D82 U+11D84 U+11D73 U+11D78 U+11D7A U+11D85 U+11D6E U+11D70 U+11D6C U+11D75 U+11D6D U+11D89 \
+                   U+11D72 U+11D77        U+11D7C        U+11D81 U+11D7E U+11D83        U+11D74 U+11D79        U+11D86 U+11D6F                             U+11D87
+
+store (diacriticalmod)  'M' 'H'
+store (diacriticalmodU) U+11D95 U+11D96
+
+store (number)  '0' '1' '2' '3' '4' '5' '6' '7' '8' '9'
+store (Gunjala) U+11DA0 U+11DA1 U+11DA2 U+11DA3 U+11DA4 U+11DA5 U+11DA6 U+11DA7 U+11DA8 U+11DA9
+
+store (different) 'F' 'f'
+
++ any(vowel) > index(vowelU,1)
++ any(consonant) > index(consonantU,1)
++ any(diacriticalmod) > index(diacriticalmodU,1)
++ any(number) > index(Gunjala,1)
+
+any (consonantU) + 'A' > context U+11D8A
+any (consonantU) + 'i' > context U+11D8B
+any (consonantU) + 'I' > context U+11D8C
+any (consonantU) + 'u' > context U+11D8D
+any (consonantU) + 'U' > context U+11D8E
+any (consonantU) + 'e' > context U+11D8F
+any (consonantU) + 'E' > context U+11D90
+any (consonantU) + 'Y' > context U+11D91
+any (consonantU) + 'o' > context U+11D92
+any (consonantU) + 'O' > context U+11D93
+any (consonantU) + 'V' > context U+11D94
+
+any (consonantU) + any(diacriticalmod) > context index(diacriticalmodU,2)
+
+any (consonantU) + 'x'  > context U+11D97
+
+any (consonantU) 'A' + any(diacriticalmod) > context index(diacriticalmodU,3)
+any (consonantU) 'i' + any(diacriticalmod) > context index(diacriticalmodU,3)
+any (consonantU) 'I' + any(diacriticalmod) > context index(diacriticalmodU,3)
+any (consonantU) 'u' + any(diacriticalmod) > context index(diacriticalmodU,3)
+any (consonantU) 'U' + any(diacriticalmod) > context index(diacriticalmodU,3)
+any (consonantU) 'e' + any(diacriticalmod) > context index(diacriticalmodU,3)
+any (consonantU) 'E' + any(diacriticalmod) > context index(diacriticalmodU,3)
+any (consonantU) 'Y' + any(diacriticalmod) > context index(diacriticalmodU,3)
+any (consonantU) 'o' + any(diacriticalmod) > context index(diacriticalmodU,3)
+any (consonantU) 'O' + any(diacriticalmod) > context index(diacriticalmodU,3)
+any (consonantU) 'V' + any(diacriticalmod) > context index(diacriticalmodU,3)
+
+c Punctuation marks
+"'" + "'" > U+201D    c Closing double quotes
+'"' + '"' > U+201C    c Opening double quotes
+"-" + "-" > U+005F U+005F               c Drawing line
+U+005F U+005F + '-' > context U+005F    c Drawing line
